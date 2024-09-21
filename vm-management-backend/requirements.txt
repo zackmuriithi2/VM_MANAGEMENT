@@ -1,0 +1,6 @@
+Flask
+docker
+flask-jwt-extended
+Flask-SQLAlchemy
+flask-bcrypt
+paramiko
