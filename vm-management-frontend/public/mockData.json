@@ -1,132 +1,193 @@
 {
-    "users": [
-      {
-        "id": 1,
-        "username": "admin",
-        "password": "admin123",
-        "role": "Admin",
-        "email": "admin@example.com",
-        "notifications": [
-          { "id": 1, "message": "VM VM1 has been moved to another user.", "timestamp": "2024-09-18T12:00:00Z" }
-        ],
-        "auditLogs": [
-          { "id": 1, "action": "Created VM", "vmId": 4, "timestamp": "2024-09-18T12:30:00Z" },
-          { "id": 2, "action": "Moved VM", "vmId": 1, "timestamp": "2024-09-18T13:00:00Z" }
-        ]
-      },
-      {
-        "id": 2,
-        "username": "standardUser",
-        "role": "Standard User",
-        "email": "standard@example.com",
-        "notifications": [],
-        "auditLogs": []
-      },
-      {
-        "id": 3,
-        "username": "guestUser",
-        "role": "Guest",
-        "email": "guest@example.com",
-        "notifications": [],
-        "auditLogs": []
-      }
-    ],
-    "vms": [
-      {
-        "id": 1,
-        "name": "VM1",
-        "status": "Running",
-        "cpu": 2,
-        "ram": 4,
-        "storage": 50,
-        "ownerId": 1,
-        "backups": [
-          { "id": 1, "timestamp": "2024-09-18T10:00:00Z" }
-        ],
-        "snapshots": [
-          { "id": 1, "timestamp": "2024-09-18T11:00:00Z" }
-        ]
-      },
-      {
-        "id": 2,
-        "name": "VM2",
-        "status": "Stopped",
-        "cpu": 4,
-        "ram": 8,
-        "storage": 100,
-        "ownerId": 2,
-        "backups": [],
-        "snapshots": []
-      },
-      {
-        "id": 3,
-        "name": "VM3",
-        "status": "Running",
-        "cpu": 1,
-        "ram": 2,
-        "storage": 20,
-        "ownerId": 3,
-        "backups": [],
-        "snapshots": []
-      },
-      {
-        "id": 4,
-        "name": "VM4",
-        "status": "Stopped",
-        "cpu": 2,
-        "ram": 4,
-        "storage": 60,
-        "ownerId": 1,
-        "backups": [],
-        "snapshots": []
-      }
-    ],
-    "billing": [
-      {
-        "id": 1,
-        "vmName": "VM1",
-        "amount": 50,
-        "dueDate": "2024-09-20",
-        "diskSize": 50
-      },
-      {
-        "id": 2,
-        "vmName": "VM2",
-        "amount": 75,
-        "dueDate": "2024-09-25",
-        "diskSize": 100
-      },
-      {
-        "id": 3,
-        "vmName": "VM3",
-        "amount": 30,
-        "dueDate": "2024-09-30",
-        "diskSize": 20
-      }
-    ],
-    "notifications": [
-      {
-        "id": 1,
-        "userId": 1,
-        "message": "VM VM1 has been moved to another user.",
-        "timestamp": "2024-09-18T12:00:00Z"
-      }
-    ],
-    "auditLogs": [
-      {
-        "id": 1,
-        "userId": 1,
-        "action": "Created VM",
-        "vmId": 4,
-        "timestamp": "2024-09-18T12:30:00Z"
-      },
-      {
-        "id": 2,
-        "userId": 1,
-        "action": "Moved VM",
-        "vmId": 1,
-        "timestamp": "2024-09-18T13:00:00Z"
-      }
-    ]
-  }
-  
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "admin123",
+      "role": "Admin",
+      "email": "admin@example.com",
+      "notifications": [
+        {
+          "id": 1,
+          "message": "VM VM1 has been moved to another user.",
+          "timestamp": "2024-09-18T12:00:00Z"
+        }
+      ],
+      "auditLogs": [
+        {
+          "id": 1,
+          "action": "Created VM",
+          "vmId": 4,
+          "timestamp": "2024-09-18T12:30:00Z"
+        },
+        {
+          "id": 2,
+          "action": "Moved VM",
+          "vmId": 1,
+          "timestamp": "2024-09-18T13:00:00Z"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "username": "standardUser",
+      "role": "Standard User",
+      "email": "standard@example.com",
+      "notifications": [],
+      "auditLogs": []
+    },
+    {
+      "id": "3",
+      "username": "guestUser",
+      "role": "Guest",
+      "email": "guest@example.com",
+      "notifications": [],
+      "auditLogs": []
+    },
+    {
+      "id": "eb65",
+      "username": "John Doe",
+      "password": "123",
+      "role": "user"
+    },
+    {
+      "id": "05d7",
+      "username": "john",
+      "password": "123",
+      "role": "user"
+    },
+    {
+      "id": "3fd7",
+      "username": "John",
+      "password": "123",
+      "role": "user"
+    },
+    {
+      "id": "686b",
+      "username": "John",
+      "password": "123",
+      "role": "user"
+    },
+    {
+      "id": "8e92",
+      "username": "John",
+      "password": "123",
+      "role": "user"
+    },
+    {
+      "id": "1512",
+      "username": "Dav",
+      "password": "123",
+      "role": "user"
+    },
+    {
+      "id": "2fa8",
+      "username": "boy",
+      "password": "boy",
+      "role": "user"
+    }
+  ],
+  "vms": [
+    {
+      "id": "1",
+      "name": "VM1",
+      "status": "Running",
+      "cpu": 2,
+      "ram": 4,
+      "storage": 50,
+      "ownerId": 1,
+      "backups": [
+        {
+          "id": 1,
+          "timestamp": "2024-09-18T10:00:00Z"
+        }
+      ],
+      "snapshots": [
+        {
+          "id": 1,
+          "timestamp": "2024-09-18T11:00:00Z"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "VM2",
+      "status": "Stopped",
+      "cpu": 4,
+      "ram": 8,
+      "storage": 100,
+      "ownerId": 2,
+      "backups": [],
+      "snapshots": []
+    },
+    {
+      "id": "3",
+      "name": "VM3",
+      "status": "Running",
+      "cpu": 1,
+      "ram": 2,
+      "storage": 20,
+      "ownerId": 3,
+      "backups": [],
+      "snapshots": []
+    },
+    {
+      "id": "4",
+      "name": "VM4",
+      "status": "Stopped",
+      "cpu": 2,
+      "ram": 4,
+      "storage": 60,
+      "ownerId": 1,
+      "backups": [],
+      "snapshots": []
+    }
+  ],
+  "billing": [
+    {
+      "id": "1",
+      "vmName": "VM1",
+      "amount": 50,
+      "dueDate": "2024-09-20",
+      "diskSize": 50
+    },
+    {
+      "id": "2",
+      "vmName": "VM2",
+      "amount": 75,
+      "dueDate": "2024-09-25",
+      "diskSize": 100
+    },
+    {
+      "id": "3",
+      "vmName": "VM3",
+      "amount": 30,
+      "dueDate": "2024-09-30",
+      "diskSize": 20
+    }
+  ],
+  "notifications": [
+    {
+      "id": "1",
+      "userId": 1,
+      "message": "VM VM1 has been moved to another user.",
+      "timestamp": "2024-09-18T12:00:00Z"
+    }
+  ],
+  "auditLogs": [
+    {
+      "id": "1",
+      "userId": 1,
+      "action": "Created VM",
+      "vmId": 4,
+      "timestamp": "2024-09-18T12:30:00Z"
+    },
+    {
+      "id": "2",
+      "userId": 1,
+      "action": "Moved VM",
+      "vmId": 1,
+      "timestamp": "2024-09-18T13:00:00Z"
+    }
+  ]
+}

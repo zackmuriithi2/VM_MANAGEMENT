@@ -10,15 +10,19 @@ function Login() {
 
   // Fetch user data from JSON file
   useEffect(() => {
-    fetch('/login.json')
+    fetch('http://localhost:8000/users')
       .then((response) => response.json())
-      .then((data) => setUsers(data.users))
-      .catch((error) => console.error('Error fetching login data:', error));
+      .then((data) => setUsers(data))
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const user = users.find((user) => user.username === username && user.password === password);
+    let user
+    if(users){
+      
+
+  user = users.find((user) => user.username.toLowerCase() === username.toLowerCase() && user.password.toLowerCase() === password.toLowerCase());
+}
 
     if (user) {
       // Save user role and redirect
@@ -91,6 +95,11 @@ function Login() {
           >
             Continue with GitHub
           </button>
+
+        </div>
+        <div className="mt-4 text-center">
+          <span className="text-gray-600">Already have an account? </span>
+          <a href="/signup" className="text-blue-600">Signup</a>
         </div>
       </div>
     </div>
