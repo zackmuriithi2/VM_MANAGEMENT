@@ -3,4 +3,5 @@ docker
 flask-jwt-extended
 Flask-SQLAlchemy
 flask-bcrypt
+Flask-Migrate
 paramiko

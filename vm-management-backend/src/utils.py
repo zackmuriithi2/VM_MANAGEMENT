@@ -9,7 +9,7 @@ def admin_required(f):
         current_user = get_jwt_identity()
         user = User.query.filter_by(username=current_user).first()
 
-        if user.role != 'Admin':
+        if user.role != 'admin':
             return jsonify({'message': 'Admins only!'}), 403
         return f(*args, **kwargs)
 
@@ -21,7 +21,7 @@ def user_required(f):
         current_user = get_jwt_identity()
         user = User.query.filter_by(username=current_user).first()
 
-        if user.role not in ['Admin', 'User']:
+        if user.role not in ['admin', 'user']:
             return jsonify({'message': 'Access denied!'}), 403
         return f(*args, **kwargs)
 

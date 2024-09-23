@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_jwt_extended import JWTManager
+from flask_migrate import Migrate
 from src.models import db
 from src.routes import routes
 from src.config import Config
@@ -9,6 +10,7 @@ app = Flask(__name__)
 app.config.from_object(Config)
 
 db.init_app(app)
+migrate = Migrate(app, db)
 jwt = JWTManager(app)
 
 app.register_blueprint(routes)

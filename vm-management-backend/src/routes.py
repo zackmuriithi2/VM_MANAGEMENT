@@ -12,24 +12,26 @@ def ping():
 
 @routes.route('/create_vm', methods=['POST'])
 @jwt_required()
-@user_required
+@admin_required
 def create_vm():
     current_user = get_jwt_identity()
+    print(f"Current user=> {current_user}")
     user = User.query.filter_by(username=current_user).first()
 
     data = request.json
     vm_name = data['name']
 
     container = Docker.create_container(vm_name)
+    print(container)
 
     if isinstance(container, dict):
         return container
 
-    new_vm = VM(name=vm_name, owner_id=user.id, status='running', container_id=container.id)
+    new_vm = VM(name=vm_name, owner_id=1, status='running', container_id=container.id)
     db.session.add(new_vm)
     db.session.commit()
 
-    return jsonify({'message': 'VM (container) created', 'container_id': container.id}), 201
+    return jsonify({'message': 'Success', 'container_id': container.id}), 201
 
 
 @routes.route('/start_vm/<int:vm_id>', methods=['PUT'])
@@ -108,5 +110,34 @@ def login():
     else:
         return jsonify({'message': 'Invalid credentials'}), 401
 
-# @routes.route('/create_vm', methods=['POST'])
-#
+
+@routes.route('/users', methods=['GET'])
+def get_users():
+    users = User.query.all()  # Fetch all users
+    user_list = [{'id': user.id, 'username': user.username, 'role': user.role} for user in users]
+    return jsonify(user_list), 200
+
+
+@routes.route('/users/<int:user_id>', methods=['GET'])
+def get_user(user_id):
+    user = User.query.get(user_id)  # Fetch user by ID
+    if user:
+        return jsonify({'id': user.id, 'username': user.username, 'role': user.role}), 200
+    else:
+        return jsonify({'message': 'User not found'}), 404
+
+
+@routes.route('/vms', methods=['GET'])
+def get_vms():
+    vms = VM.query.all()  # Fetch all VMs
+    vm_list = [{'id': vm.id, 'name': vm.name, 'owner_id': vm.owner_id, 'status': vm.status} for vm in vms]
+    return jsonify(vm_list), 200
+
+
+@routes.route('/vms/<int:vm_id>', methods=['GET'])
+def get_vm(vm_id):
+    vm = VM.query.get(vm_id)
+    if vm:
+        return jsonify({'id': vm.id, 'name': vm.name, 'status': vm.status}), 200
+    else:
+        return jsonify({'message': 'VM not found'}), 404

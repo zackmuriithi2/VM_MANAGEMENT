@@ -9,12 +9,12 @@ class Docker:
     
 
     @staticmethod
-    def create_container(self):
+    def create_container(vm_name):
         try:
             image = "ubuntu:latest"
             container = client.containers.run(
                 image,
-                name="Test Container",
+                name=vm_name,
                 detach=True,
                 tty=True
             )
