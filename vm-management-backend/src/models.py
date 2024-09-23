@@ -1,16 +1,28 @@
-from sqlalchemy_serializer import SerializerMixin
+from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
 
-from vm_management_dev.ext.database import db
+db = SQLAlchemy()
+bcrypt = Bcrypt()
 
-
-class Product(db.Model, SerializerMixin):
+class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(140))
-    price = db.Column(db.Numeric())
-    description = db.Column(db.Text)
+    username = db.Column(db.String(150), unique=True, nullable=False)
+    password = db.Column(db.String(150), nullable=False)
+    role = db.Column(db.String(50), nullable=False)  # Admin, User, Guest
+
+    def set_password(self, password):
+        self.password = bcrypt.generate_password_hash(password).decode('utf-8')
+
+    def check_password(self, password):
+        return bcrypt.check_password_hash(self.password, password)
 
 
-class User(db.Model, SerializerMixin):
+class VM(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(140))
-    password = db.Column(db.String(512))
+    name = db.Column(db.String(100), nullable=False)
+    owner_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    status = db.Column(db.String(50), nullable=False)  # running, stopped
+    container_id = db.Column(db.String(100), nullable=False)
+
+    owner = db.relationship('User', backref='vms')
+
