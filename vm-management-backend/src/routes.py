@@ -27,7 +27,7 @@ def create_vm():
     if isinstance(container, dict):
         return container
 
-    new_vm = VM(name=vm_name, owner_id=1, status='running', container_id=container.id)
+    new_vm = VM(name=vm_name, owner_id=user.id, status='created', container_id=container.id)
     db.session.add(new_vm)
     db.session.commit()
 
