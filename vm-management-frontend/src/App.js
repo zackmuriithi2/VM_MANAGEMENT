@@ -5,9 +5,9 @@ import Billing from './components/Billing';
 import Login from './components/Login';
 import Signup  from './components/Signup';
 import Navbar from './components/Navbar';
-import { createClient } from '@supabase/supabase-js'
-import { Auth } from '@supabase/auth-ui-react'
-import { ThemeSupa } from '@supabase/auth-ui-shared'
+// import { createClient } from '@supabase/supabase-js'
+// import { Auth } from '@supabase/auth-ui-react'
+// import { ThemeSupa } from '@supabase/auth-ui-shared'
 
 
 function App() {

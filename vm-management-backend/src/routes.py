@@ -82,12 +82,12 @@ def delete_vm(vm_id):
         return jsonify({'message': 'Not authorized to delete this VM'}), 403
     
 
-@routes.route('/register', methods=['POST'])
+@routes.route('/signup', methods=['POST'])
 def register():
     data = request.json
     username = data['username']
     password = data['password']
-    role = data.get('role', 'User')
+    role = data.get('role', 'user')
 
     if User.query.filter_by(username=username).first():
         return jsonify({'message': 'User already exists'}), 400
@@ -99,6 +99,7 @@ def register():
     
     return jsonify({'message': 'User registered successfully'}), 201
 
+
 @routes.route('/login', methods=['POST'])
 def login():
     data = request.json
@@ -106,7 +107,7 @@ def login():
 
     if user and user.check_password(data['password']):
         access_token = create_access_token(identity=user.username)
-        return jsonify(access_token=access_token), 200
+        return jsonify(role=user.role, access_token=access_token), 200
     else:
         return jsonify({'message': 'Invalid credentials'}), 401
 

@@ -5,8 +5,11 @@ from src.models import db
 from src.routes import routes
 from src.config import Config
 import os
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+CORS(app)
 app.config.from_object(Config)
 
 db.init_app(app)

@@ -1,36 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Updated for react-router v6
-
 function Login() {
-  const [users, setUsers] = useState([]);
+  // const [users, setUsers] = useState([]);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState(''); // State for success message
   const navigate = useNavigate(); // Updated for react-router v6
-
-  // Fetch user data from JSON file
-  useEffect(() => {
-    fetch('http://localhost:8000/users')
-      .then((response) => response.json())
-      .then((data) => setUsers(data))
-  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let user
-    if(users){
-      
-
-  user = users.find((user) => user.username.toLowerCase() === username.toLowerCase() && user.password.toLowerCase() === password.toLowerCase());
-}
-
-    if (user) {
-      // Save user role and redirect
-      localStorage.setItem('userRole', user.role); // or use context/state management
-      navigate('/dashboard'); // Redirect to the dashboard
-    } else {
-      setError('Invalid username or password');
-    }
+    const creds = { username, password };
+    
+    fetch('https://cautious-engine-4w9vpp9r79vf749x-5000.app.github.dev/login', {
+      method: 'POST',
+      headers: { 
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
+      body: JSON.stringify(creds),
+    })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed to login');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      let accessToken = data.access_token;
+      setSuccessMessage('Successfully logged in! Redirecting to dashbooard...');
+      setTimeout(() => {
+        localStorage.setItem('accessToken', accessToken);
+        navigate('/dashboard');
+      }, 3000);
+    })
+    .catch((err) => {
+      setError(err.message || 'Invalid username or password');
+    });
   };
 
   const handleSSOLogin = (provider) => {

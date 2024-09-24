@@ -5,3 +5,4 @@ Flask-SQLAlchemy
 flask-bcrypt
 Flask-Migrate
 paramiko
+Flask-Cors
