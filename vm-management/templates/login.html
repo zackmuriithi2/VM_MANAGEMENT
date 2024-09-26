@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+    <!-- <script href=""></script> -->
+</head>
+<body>
+    <div className="flex justify-center items-center h-screen bg-gray-100">
+        <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg">
+          <h2 className="text-3xl font-bold text-center text-blue-700">Login</h2>
+            <form className="space-y-4" onSubmit={handleSubmit}>
+                <div>
+                  <label className="block text-gray-700">Username</label>
+                  <input type="text" value="" className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    placeholder="Enter your username" required/>
+                </div>
+                <div>
+                  <label className="block text-gray-700">Password</label>
+                  <input type="password" value="" className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    placeholder="Enter your password" required/>
+                </div>
+                <button type="submit" className="w-full px-4 py-2 font-bold text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                  Login
+                </button>
+                <p className="text-red-500 mt-2 text-center">error</p>
+              </form>
+
+              <div className="mt-4 text-center">
+                <span className="text-gray-600">Or login with</span>
+              </div>
+      
+              <div className="flex justify-around mt-4">
+                <button className="px-4 py-2 font-bold text-white bg-red-500 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">
+                  Continue with Google</button>
+                <button className="px-4 py-2 font-bold text-white bg-gray-800 rounded-lg hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800">
+                  Continue with GitHub</button>
+      
+              </div>
+              <div className="mt-4 text-center">
+                <span className="text-gray-600">Already have an account? </span>
+                <a href="/signup" className="text-blue-600">Signup</a>
+              </div>
+            </div>
+          </div>
+</body>
+</html>

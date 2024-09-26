@@ -131,3 +131,6 @@ dmypy.json
 # templates
 .github/templates/*
 development.db
+
+# JS dependencies
+node*

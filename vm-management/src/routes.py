@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, render_template
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from .manage_docker import Docker
 from .models import db, User, VM
@@ -9,6 +9,17 @@ routes = Blueprint('routes', __name__)
 @routes.route('/', methods=['GET'])
 def ping():
     return "pong"
+
+
+@routes.route('/page/login', methods=['GET'])
+def login_page():
+    return render_template('login.html')
+
+
+@routes.route('/page/signup', methods=['GET'])
+def signup_page():
+    return render_template('signup.html')
+
 
 @routes.route('/create_vm', methods=['POST'])
 @jwt_required()
